@@ -1,11 +1,11 @@
 {
-  "name": "mean-login",
+  "name": "mean-cms",
   "version": "1.0.0",
-  "description": "MEAN Stack App using Passport and JWT",
-  "main": "app.js",
+  "description": "Simple CMS in MEAN-Stack",
+  "main": "./backend/bin/wwwjs",
   "scripts": {
     "ng": "ng",
-    "start": "ng build && node ./bin/www",
+    "start": "ng build && node ./backend/bin/www",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
