@@ -6,6 +6,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng build && node ./backend/bin/www",
+    "dev": "nodemon ./backend/bin/www",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

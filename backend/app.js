@@ -27,7 +27,7 @@ mongoose.connect(process.env.MONGO_URI, {
 
 
 // Load Routes
-const api = require('./routes/api/api');
+const api = require('./api/routes/api');
 
 // Cors Middleware
 app.use(cors);
