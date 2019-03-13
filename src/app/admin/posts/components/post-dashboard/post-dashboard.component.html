@@ -1,0 +1,56 @@
+<a [routerLink]="['/admin']" mat-button color="accent">GO BACK</a>
+<div class="post-container mat-elevation-z8">
+  <div class="post-loading-shade" *ngIf="isLoading || dataSource.data.length <= 0">
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <h1 *ngIf="!isLoading &&  dataSource.data.length <= 0" md-colors="{color:'primary'}" class="mat-display-1">
+      No posts added yet!
+    </h1>
+  </div>
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+    <!-- Title Column -->
+    <ng-container matColumnDef="title">
+      <th mat-header-cell *matHeaderCellDef> Title </th>
+      <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+    </ng-container>
+
+    <!-- Creator Column -->
+    <ng-container matColumnDef="creator">
+      <th mat-header-cell *matHeaderCellDef> Creator </th>
+      <td mat-cell *matCellDef="let element"> {{element.creator}} </td>
+    </ng-container>
+
+    <!-- Categories Column -->
+    <ng-container matColumnDef="categories">
+      <th mat-header-cell *matHeaderCellDef> Categories </th>
+      <td mat-cell *matCellDef="let element"> {{element.categories}} </td>
+    </ng-container>
+
+    <!-- Tags Column -->
+    <ng-container matColumnDef="tags">
+      <th mat-header-cell *matHeaderCellDef> Tags </th>
+      <td mat-cell *matCellDef="let element"> {{element.tags}} </td>
+    </ng-container>
+
+    <!-- Date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <td mat-cell *matCellDef="let element"> {{element.date | date}} </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef> Action </th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/admin/posts/edit', element.id]" mat-button color="accent">EDIT</a>
+        <button mat-button color="warn" routerLinkActive="router-link-active" (click)="onDelete(element.id)">DELETE</button>
+      </td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator showFirstLastButtons [pageSize]="pageSize">
+  </mat-paginator>
+</div>
+<a [routerLink]="['/admin/posts/add']" mat-raised-button class="add-button" color="accent">ADD POST</a>

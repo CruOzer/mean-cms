@@ -34,7 +34,7 @@ export class AuthService {
           cssClass: 'alert-success',
           timeout: 4000
         });
-        this.router.navigate(['/auth/login']);
+        this.router.navigate(['/admin/auth/login']);
       },
       (error: ServerMessage) => {
         this.flashMsg.show('Error while registering: ' + error.message, {
@@ -53,8 +53,6 @@ export class AuthService {
       .post<SuccessLoginData>(BACKEND_URL + '/login', authData)
       .subscribe(
         (response: SuccessLoginData) => {
-
-    console.log('response');
           if (response.success) {
             this.token = response.token;
             const expiresInDuration = response.expiresIn;
@@ -71,7 +69,7 @@ export class AuthService {
               cssClass: 'alert-success',
               timeout: 4000
             });
-            this.router.navigate(['/']);
+            this.router.navigate(['/admin']);
           }
         },
         (error: ServerMessage) => {
@@ -96,7 +94,7 @@ export class AuthService {
       cssClass: 'alert-success',
       timeout: 4000
     });
-    this.router.navigate(['/']);
+    this.router.navigate(['/admin']);
   }
 
   autoAuthUser() {

@@ -1,0 +1,37 @@
+<a [routerLink]="['/admin/posts']" mat-button color="accent">GO BACK</a>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-card *ngIf=" !isLoading">
+  <mat-card-title *ngIf="!editMode">
+    Add a new post
+  </mat-card-title>
+  <mat-card-title *ngIf="editMode">
+      Edit {{post.title}}
+    </mat-card-title>
+  <mat-card-content>
+    <form class="md-form" (submit)="onSubmit(addPostForm)" #addPostForm="ngForm">
+      <mat-form-field>
+        <input type="text" matInput id="title" placeholder="Title" name="title" ngModel #titleInput="ngModel" [(ngModel)]="post.title" required>
+      </mat-form-field>
+      <mat-form-field>
+        <textarea id="body" matInput name="body" ngModel #bodyInput="ngModel" required placeholder="Content" [(ngModel)]="post.content"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-select placeholder="Choose post status" id="status" name="status" #statusInput ngModel required [(ngModel)]="post.status">
+          <mat-option value="public">Public</mat-option>
+          <mat-option value="unpublished">Unpublished</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-checkbox name="allowComments" id="allowComments" [(ngModel)]="post.allowComments" ngModel>Allow Comment</mat-checkbox>
+      <mat-form-field>
+        <input type="text" matInput id="tags" name="tags" ngModel placeholder="Tags" [(ngModel)]="post.tags">
+      </mat-form-field>
+      <mat-form-field>
+        <input type="text" matInput id="categories" name="categories" ngModel placeholder="Categories" [(ngModel)]="post.categories">
+      </mat-form-field>
+      <button *ngIf="!editMode" mat-raised-button color="accent" [disabled]="titleInput.errors || bodyInput.errors || statusInput.selected == null" type="submit">ADD
+        POST</button>
+        <button *ngIf="editMode" mat-raised-button color="accent" [disabled]="titleInput.errors || bodyInput.errors || statusInput.selected == null" type="submit">EDIT
+            POST</button>
+    </form>
+  </mat-card-content>
+</mat-card>

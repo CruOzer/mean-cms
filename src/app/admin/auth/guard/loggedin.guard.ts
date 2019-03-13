@@ -21,7 +21,7 @@ export class LoggedinGuard implements CanActivate {
   ): boolean | Observable<boolean> | Promise<boolean> {
     const isAuth: boolean = this.authService.getIsAuth();
     if (isAuth) {
-      this.router.navigate(['/']);
+      this.router.navigate(['/admin']);
     }
     return !isAuth;
   }

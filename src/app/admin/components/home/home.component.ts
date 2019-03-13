@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../auth/services/auth.service';
 
 @Component({
   selector: 'app-home',
@@ -6,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-
-  constructor() { }
+  isLoggedIn: boolean;
+  private authListenerSubs: Subscription;
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
+    this.isLoggedIn = this.authService.getIsAuth();
+    this.authListenerSubs = this.authService
+      .getAuthStatusListener()
+      .subscribe(isAuth => (this.isLoggedIn = isAuth));
   }
 
+  ngOnDestroy(): void {
+    this.authListenerSubs.unsubscribe();
+  }
+
+  onLogoutClick() {
+    this.authService.logout();
+  }
 }

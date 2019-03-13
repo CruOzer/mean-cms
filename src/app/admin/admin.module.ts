@@ -10,13 +10,18 @@ import { HomeComponent } from './components/home/home.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './components/admin/admin.component';
+import { AddPostComponent } from './posts/components/add-post/add-post.component';
+import { PostDashboardComponent } from './posts/components/post-dashboard/post-dashboard.component';
+
+import { AngularMaterialModule } from '../angular-material.module';
 
 @NgModule({
-  declarations: [HomeComponent, NavbarComponent, AdminComponent],
+  declarations: [HomeComponent, NavbarComponent, AdminComponent, AddPostComponent,  PostDashboardComponent],
   imports: [
     FormsModule,
     CommonModule,
     RouterModule,
+    AngularMaterialModule,
     AdminRoutingModule
   ],
   providers: [
