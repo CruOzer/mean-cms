@@ -1,29 +1,6 @@
-# Node Authentication API With Angular
+# MEAN CMS
 
-API for registering users with mongodb and authentication using a JWT (json web token). This app uses passport and passport-jwt and uses a JWT strategy
+Simple MEAN CMS. NodeJS REST-API serving an angular app displaying the content. Angular lazy-loads the admin area in order to manage the content. Admin area work with Passport and JWT (json web token). The data is stored in MongoDB using Mongoose.
 
 ### Version
 1.0.0
-
-## Usage
-
-```bash
-npm install
-```
-
-```bash
-npm start
-```
-
-## Endpoints
-```bash
-POST /users/register
-```
-
-```bash
-POST /users/authenticate   // Gives back a token
-```
-
-```bash
-GET /users/profile         // Needs json web token to authorize
-```
