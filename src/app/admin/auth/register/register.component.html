@@ -1,0 +1,27 @@
+<h2 class="page-header">Register</h2>
+<form (submit)="onRegisterSubmit(registerForm)" #registerForm="ngForm">
+  <div class="form-group">
+    <label>Name</label>
+    <input type="text" ngModel #nameInput="ngModel" placeholder="Name" name="name" class="form-control">
+  </div>
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" ngModel #usernameInput="ngModel" placeholder="Username" name="username" class="form-control"
+      required [ngClass]="{'is-invalid': usernameInput.errors && usernameInput.touched}">
+    <div class="invalid-feedback" [hidden]="!usernameInput.errors?.required">Username required</div>
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input type="text" ngModel #emailInput="ngModel" placeholder="E-Mail" name="email" class="form-control" required
+      email [ngClass]="{'is-invalid': emailInput.errors && emailInput.touched}">
+    <div class="invalid-feedback" [hidden]="!emailInput.errors?.required">E-Mail required</div>
+    <div class="invalid-feedback" [hidden]="!emailInput.errors?.email">E-Mail is not valid</div>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" placeholder="Password" name="password" ngModel #passwordInput="ngModel" class="form-control"
+      required [ngClass]="{'is-invalid': passwordInput.errors && passwordInput.touched}">
+      <div class="invalid-feedback" [hidden]="!passwordInput.errors?.required">Password required</div>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Register" [disabled]="passwordInput.errors || emailInput.errors || usernameInput.errors">
+</form>

@@ -1,0 +1,16 @@
+<h2 class="page-header">Register</h2>
+<form (submit)="onLoginSubmit(loginForm)" #loginForm="ngForm">
+  <div class="form-group">
+    <label>Username</label>
+    <input type="text" ngModel #usernameInput="ngModel" placeholder="Username" name="username" class="form-control"
+      required [ngClass]="{'is-invalid': usernameInput.errors && usernameInput.touched}">
+    <div class="invalid-feedback" [hidden]="!usernameInput.errors?.required">Username required</div>
+  </div>
+  <div class="form-group">
+    <label>Password</label>
+    <input type="password" placeholder="Password" name="password" ngModel #passwordInput="ngModel" class="form-control"
+      required [ngClass]="{'is-invalid': passwordInput.errors && passwordInput.touched}">
+      <div class="invalid-feedback" [hidden]="!passwordInput.errors?.required">Password required</div>
+  </div>
+  <input type="submit" class="btn btn-primary" value="Login" [disabled]="passwordInput.errors || usernameInput.errors">
+</form>
